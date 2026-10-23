@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="잠깐의 방문, 오래 남는 한마디. 이름과 짧은 안부를 남기는 작은 방명록입니다.">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>작은 방명록 — 당신의 안부를 남겨 주세요</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#write">방명록 작성으로 건너뛰기</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="작은 방명록 처음으로">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>작은 방명록</span>
+      </a>
+      <span class="header-note">오고 가는 마음이 머무는 곳</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> A LITTLE GUESTBOOK</p>
+        <div class="hero-row">
+          <div>
+            <h1 id="page-title">잠깐의 방문,<br>오래 남는 <span>한마디.</span></h1>
+            <p class="hero-description">이곳에 들렀다는 작은 흔적을 남겨 주세요.<br>당신의 평범한 하루도 반가운 이야기가 됩니다.</p>
+          </div>
+          <div class="hero-stamp" aria-hidden="true"><span>HELLO, THERE</span><b>✳</b><span>반가워요, 당신</span></div>
+        </div>
+      </section>
+
+      <div class="guestbook-layout">
+        <section class="write-panel" id="write" aria-labelledby="write-title">
+          <div class="section-kicker">01 / LEAVE A NOTE</div>
+          <h2 id="write-title">안부를 남겨 주세요</h2>
+          <p class="section-description">거창한 이야기가 아니어도 괜찮아요.</p>
+          $notice
+          <form action="/entries" method="post" accept-charset="UTF-8">
+            <div class="field">
+              <div class="label-row"><label for="name">이름</label><span id="name-hint">최대 20자</span></div>
+              <input id="name" name="name" type="text" value="$name" maxlength="20" required autocomplete="nickname" placeholder="어떤 이름으로 기억할까요?" aria-describedby="name-hint" $disabled>
+            </div>
+            <div class="field">
+              <div class="label-row"><label for="message">남기고 싶은 말</label><span id="message-hint">최대 500자</span></div>
+              <textarea id="message" name="message" rows="6" maxlength="500" required placeholder="짧은 인사도, 오늘의 이야기도 좋아요." aria-describedby="message-hint public-hint" $disabled>$message</textarea>
+            </div>
+            <p class="form-note" id="public-hint"><span aria-hidden="true">↗</span> 남겨 주신 글은 이곳을 찾는 모두에게 보여요.</p>
+            <button class="submit-button" type="submit" $disabled>마음 남기기 <span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="writing-footer"><span aria-hidden="true">✳</span> 다정한 말 한마디의 힘을 믿어요.</div>
+        </section>
+
+        <section class="messages-panel" id="messages" aria-labelledby="messages-title">
+          <div class="messages-heading">
+            <div><div class="section-kicker">02 / LITTLE HELLOS</div><h2 id="messages-title">머물다 간 마음들 <span class="count">$total</span></h2></div>
+            <span class="sort-order"><span aria-hidden="true">↓</span> 최신순</span>
+          </div>
+          <div class="entries">$cards</div>
+          $pagination
+          <p class="feed-footer">서로의 하루에 작은 온기를 더해요.</p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer"><span>작은 방명록</span><span>작은 기록, 오래도록. &copy; $year</span></footer>
+  </div>
+</body>
+</html>
